@@ -114,7 +114,7 @@ st.markdown("<hr>", unsafe_allow_html=True)
 
 # File Upload
 with st.container():
-    uploaded_file = st.file_uploader("📎 Upload Combined BRD or FSD Document", type=["pdf", "docx", "doc", "txt"])
+    uploaded_file = st.file_uploader("📎 Upload BRD or FSD Document", type=["pdf", "docx", "doc", "txt"])
 
     if uploaded_file:
         if uploaded_file.name.lower().endswith(".doc"):
@@ -148,7 +148,7 @@ with st.container():
                         output = io.BytesIO()
                         with pd.ExcelWriter(output, engine='openpyxl') as writer:
                             df.to_excel(writer, index=False, sheet_name='TestCases')
-                        st.download_button("📥 Download Excel", data=output.getvalue(), file_name="TCD_Generated_OpenAI.xlsx")
+                        st.download_button("📥 Download Excel", data=output.getvalue(), file_name="TCD_Generated.xlsx")
                     except Exception as e:
                         st.error(f"⚠️ Failed to parse test case table. Error: {e}")
     else:
